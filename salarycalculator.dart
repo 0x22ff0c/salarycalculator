@@ -10,38 +10,27 @@ void main(List<String> args) {
 
   double grossSalaryAmount;
 
-  RegExp regExp = new RegExp("\\D");
+  RegExp regExp = new RegExp("\d[^.,]");
 
   if(userGrossSalaryAmount == null || userGrossSalaryAmount == ""){
-
-    print("\n[ERROR] You did not input any gross salary amount.");
-    exit(0);
-
-  }else if (regExp.hasMatch(userGrossSalaryAmount)){
-
-    print("\n[ERROR] Your input contains an invalid numeric character.");
-    print("\n[Error] Your input: " + userGrossSalaryAmount);
-    exit(0);
-
-  }else{
-
-    grossSalaryAmount = double.parse(userGrossSalaryAmount);
-    print("Gross salary: " + grossSalaryAmount.toStringAsFixed(2));
-
+    while(userGrossSalaryAmount == null || userGrossSalaryAmount == ""){
+      print("\n[ERROR] Your did not provide any gross monthly salary.");
+      stdout.write("Input your gross monthly salary here: ");
+      userGrossSalaryAmount = stdin.readLineSync();
+    }
   }
+
+  if(regExp.hasMatch(userGrossSalaryAmount)){
+    String userInput = userGrossSalaryAmount;
+    while(regExp.hasMatch(userInput)){
+      print('\n[ERROR] You provided an invalid amount: $userGrossSalaryAmount');
+      stdout.write("\nInput your gross monthly salary here: ");
+      userGrossSalaryAmount = stdin.readLineSync();
+      userInput = userGrossSalaryAmount.toString();
+    }
+  }
+
+  grossSalaryAmount = double.parse(userGrossSalaryAmount.toString());
+  print("Gross salary: " + grossSalaryAmount.toStringAsFixed(2));
   
-  // String sample = "10000";
-
-  // RegExp regularExpressions = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-
-  // String Function(Match) matchFunction = (Match match) => '${match[1]},';
-
-  // double sampledouble = double.parse(sample);
-
-  // sample = sampledouble.toStringAsFixed(2);
-
-  // sample = sample.replaceAllMapped(regularExpressions, matchFunction);
-
-  // print(sample);
-
 }
