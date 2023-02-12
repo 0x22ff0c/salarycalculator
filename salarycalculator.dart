@@ -67,5 +67,25 @@ void main(List<String> args) {
     print("Pag-IBIG contribution " + pagibigDeduction.toStringAsFixed(2));
 
   }
+
+  double philHealthDeduction;
+
+  if(grossSalaryAmount <= 0.00){
+    
+    print("\nNo contribution for: PhilHealth");
+
+  }else if (grossSalaryAmount <= 79999.99){
+
+    philHealthDeduction = grossSalaryAmount *  0.04;
+  
+    print("PhilHeatlh contribution: " + philHealthDeduction.toStringAsFixed(2));
+
+  }else if(grossSalaryAmount >= 80000.00){
+  
+    philHealthDeduction = 80000.00 * 0.04;
+  
+    print("PhilHealth contribution: " + philHealthDeduction.toStringAsFixed(2));
+
+  }
   
 }
