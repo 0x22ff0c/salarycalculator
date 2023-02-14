@@ -71,9 +71,9 @@ void main(List<String> args) {
 
   }
 
-  // /**
-  //  * Philhealth contribution
-  //  */
+  /**
+   * Philhealth contribution
+   */
 
   double philHealthDeduction;
 
@@ -142,7 +142,56 @@ void main(List<String> args) {
       }
 
     }
-
   }
 
+    /**
+     * Tax contribution
+     */
+
+    double taxContributionPerMonth;
+    double annualGrossSalary = grossSalaryAmount * 12;
+    double subtrahend;
+
+    print("Annual gross salary: " + annualGrossSalary.toStringAsFixed(2));
+
+    if(annualGrossSalary < 250000.00){
+
+      print("\nNo contribution for: Tax");
+    
+    }else if (annualGrossSalary > 250000.00 && annualGrossSalary < 400000.00){
+      
+      subtrahend = 250000.00;
+      taxContributionPerMonth = ((annualGrossSalary - subtrahend) * 0.15) / 12;
+      
+      if(taxContributionPerMonth < 1.00){
+        print("\nNo contribution for: Tax");
+      }else{
+        print("Tax Contribution: " + taxContributionPerMonth.toStringAsFixed(2));
+      }
+
+    }else if (annualGrossSalary > 400000.00 && annualGrossSalary < 800000.00){
+
+      subtrahend = 400000.00;
+      taxContributionPerMonth = (22500.00 + (annualGrossSalary - subtrahend) * 0.20) / 12;
+      print("Tax Contribution: " + taxContributionPerMonth.toStringAsFixed(2));
+    
+    }else if (annualGrossSalary > 800000.00 && annualGrossSalary < 2000000.00){
+
+      subtrahend = 800000.00;
+      taxContributionPerMonth = (102500.00 + (annualGrossSalary - subtrahend) * 0.25) / 12;
+      print("Tax Contribution: " + taxContributionPerMonth.toStringAsFixed(2));
+    
+    }else if (annualGrossSalary > 2000000.00 && annualGrossSalary < 8000000.00){
+
+      subtrahend = 2000000.00;
+      taxContributionPerMonth = (402500.00 + (annualGrossSalary - subtrahend) * 0.30) / 12;
+      print("Tax Contribution: " + taxContributionPerMonth.toStringAsFixed(2));
+
+    }else if(annualGrossSalary > 8000000.00){
+
+      subtrahend = 8000000.00;
+      taxContributionPerMonth = (2202500.00 + (annualGrossSalary - subtrahend) * 0.35) / 12;
+      print("Tax Contribution: " + taxContributionPerMonth.toStringAsFixed(2));
+
+    }
 }
