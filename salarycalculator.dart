@@ -2,7 +2,20 @@ import 'dart:io';
 
 void main(List<String> args) {
 
-  print("========= SALARY CALCULATOR =========");
+  promptUserToInputSalary();
+
+  calculatePagibigContribution(getGrossSalary());
+
+  calculatePhilHealthContribution(getGrossSalary());
+  
+  calculateSSSContribution(getGrossSalary());
+  
+  calculateTaxContribution(getGrossSalary());
+
+}
+
+void promptUserToInputSalary(){
+    print("========= SALARY CALCULATOR =========");
   print("\n");
   stdout.write("Input your gross monthly salary here: ");
   
@@ -34,6 +47,7 @@ void main(List<String> args) {
   String Function(Match match) matchFunction = (Match match) => '${match[1]},'; 
 
   grossSalaryAmount = double.parse(userGrossSalaryAmount.toString());
+  setGrossSalary(grossSalaryAmount);
   
   userGrossSalaryAmount = grossSalaryAmount.toStringAsFixed(2);
   
@@ -41,9 +55,23 @@ void main(List<String> args) {
 
   print("Gross salary: " + userGrossSalaryAmount);
 
-  // /**
-  //  * Pag-IBIG contribution
-  //  */
+}
+
+double grossSalary = 0.00;
+
+void setGrossSalary(double userGrossSalary){
+  grossSalary = userGrossSalary;
+}
+
+double getGrossSalary(){
+  return grossSalary;
+}
+
+void calculatePagibigContribution(double grossSalaryAmount){
+
+  /**
+   * Pag-IBIG contribution
+   */
 
   double pagibigDeduction;
 
@@ -71,6 +99,10 @@ void main(List<String> args) {
 
   }
 
+}
+
+void calculatePhilHealthContribution(double grossSalaryAmount){
+
   /**
    * Philhealth contribution
    */
@@ -94,6 +126,10 @@ void main(List<String> args) {
     print("PhilHealth contribution: " + philHealthDeduction.toStringAsFixed(2));
 
   }
+
+}
+
+void calculateSSSContribution(double grossSalaryAmount){
 
   /**
    * SSS Contribution
@@ -143,7 +179,9 @@ void main(List<String> args) {
 
     }
   }
+}
 
+void calculateTaxContribution(double grossSalaryAmount){
     /**
      * Tax contribution
      */
