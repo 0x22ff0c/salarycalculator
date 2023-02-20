@@ -5,7 +5,7 @@ void main(List<String> args) {
   promptUserToInputSalary();
 
   calculatePagibigContribution(getGrossSalary());
-
+  
   calculatePhilHealthContribution(getGrossSalary());
   
   calculateSSSContribution(getGrossSalary());
@@ -15,26 +15,34 @@ void main(List<String> args) {
 }
 
 void promptUserToInputSalary(){
-    print("========= SALARY CALCULATOR =========");
+
+  String userInput = "";
+
+  print("========= SALARY CALCULATOR =========");
   print("\n");
-  stdout.write("Input your gross monthly salary here: ");
-  
-  String? userGrossSalaryAmount = stdin.readLineSync();
+
+  String? userGrossSalaryAmount;
 
   double grossSalaryAmount;
 
   RegExp regExpUserInput = new RegExp("\d[^.,]");
 
   if(userGrossSalaryAmount == null || userGrossSalaryAmount == ""){
+
+  stdout.write("Input your gross monthly salary here: ");
+  
+  userGrossSalaryAmount = stdin.readLineSync();
+
     while(userGrossSalaryAmount == null || userGrossSalaryAmount == ""){
       print("\n[ERROR] Your did not provide any gross monthly salary.");
       stdout.write("Input your gross monthly salary here: ");
       userGrossSalaryAmount = stdin.readLineSync();
     }
+    userInput = userGrossSalaryAmount.replaceAll(RegExp(","), "");
   }
 
   if(regExpUserInput.hasMatch(userGrossSalaryAmount)){
-    String userInput = userGrossSalaryAmount;
+    userInput = userGrossSalaryAmount;
     while(regExpUserInput.hasMatch(userInput)){
       print('\n[ERROR] You provided an invalid amount: $userGrossSalaryAmount');
       stdout.write("\nInput your gross monthly salary here: ");
@@ -44,15 +52,15 @@ void promptUserToInputSalary(){
   }
 
   RegExp regExpFormattedNumber = new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-  String Function(Match match) matchFunction = (Match match) => '${match[1]},'; 
+  String Function(Match match) matchFunction = (Match match) => '${match[1]},';
 
-  grossSalaryAmount = double.parse(userGrossSalaryAmount.toString());
+  grossSalaryAmount = double.parse(userInput);
   setGrossSalary(grossSalaryAmount);
   
   userGrossSalaryAmount = grossSalaryAmount.toStringAsFixed(2);
   
   userGrossSalaryAmount = userGrossSalaryAmount.toString().replaceAllMapped(regExpFormattedNumber, matchFunction);
-
+  
   print("Gross salary: " + userGrossSalaryAmount);
 
 }
