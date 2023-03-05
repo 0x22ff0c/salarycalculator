@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'paigibigcontribution.dart';
+
 void main(List<String> args) {
 
   promptUserToInputSalary();
 
-  calculatePagibigContribution(getGrossSalary());
-  
+  new pagibigcontribution(getGrossSalary());
+
   calculatePhilHealthContribution(getGrossSalary());
   
   calculateSSSContribution(getGrossSalary());
@@ -73,40 +75,6 @@ void setGrossSalary(double userGrossSalary){
 
 double getGrossSalary(){
   return grossSalary;
-}
-
-void calculatePagibigContribution(double grossSalaryAmount){
-
-  /**
-   * Pag-IBIG contribution
-   */
-
-  double pagibigDeduction;
-
-  if (grossSalaryAmount <= 0.00){
-
-    print("\nNo contribution for: Pag-IBIG");
-  
-  }else if(grossSalaryAmount <= 1500.00){
-
-    pagibigDeduction = grossSalaryAmount * 0.01;
-
-    print("Pag-IBIG contribution: " + pagibigDeduction.toStringAsFixed(2));
-
-  }else if (grossSalaryAmount > 1500.00 && grossSalaryAmount <= 5000.00){
-
-    pagibigDeduction = grossSalaryAmount * 0.02;
-
-    print("Pag-IBIG contribution: " + pagibigDeduction.toStringAsFixed(2));
-
-  }else if (grossSalaryAmount > 5000.00){
-
-    pagibigDeduction = 5000.00 * 0.02;
-
-    print("Pag-IBIG contribution " + pagibigDeduction.toStringAsFixed(2));
-
-  }
-
 }
 
 void calculatePhilHealthContribution(double grossSalaryAmount){
