@@ -1,14 +1,15 @@
 import 'dart:io';
 
 import 'paigibigcontribution.dart';
+import 'philhealthcontribution.dart';
 
 void main(List<String> args) {
 
   promptUserToInputSalary();
 
   new pagibigcontribution(getGrossSalary());
-
-  calculatePhilHealthContribution(getGrossSalary());
+  
+  new philhealthcontribution(getGrossSalary());
   
   calculateSSSContribution(getGrossSalary());
   
@@ -75,34 +76,6 @@ void setGrossSalary(double userGrossSalary){
 
 double getGrossSalary(){
   return grossSalary;
-}
-
-void calculatePhilHealthContribution(double grossSalaryAmount){
-
-  /**
-   * Philhealth contribution
-   */
-
-  double philHealthDeduction;
-
-  if(grossSalaryAmount <= 0.00){
-    
-    print("\nNo contribution for: PhilHealth");
-
-  }else if (grossSalaryAmount <= 79999.99){
-
-    philHealthDeduction = grossSalaryAmount *  0.04;
-  
-    print("PhilHeatlh contribution: " + philHealthDeduction.toStringAsFixed(2));
-
-  }else if(grossSalaryAmount >= 80000.00){
-  
-    philHealthDeduction = 80000.00 * 0.04;
-  
-    print("PhilHealth contribution: " + philHealthDeduction.toStringAsFixed(2));
-
-  }
-
 }
 
 void calculateSSSContribution(double grossSalaryAmount){
