@@ -8,13 +8,13 @@ void main(List<String> args) {
 
   promptUserToInputSalary();
 
-  // new pagibigcontribution(getGrossSalary());
+  new pagibigcontribution(getGrossSalary());
   
-  // new philhealthcontribution(getGrossSalary());
+  new philhealthcontribution(getGrossSalary());
   
   new ssscontribution(getGrossSalary());
   
-  // calculateTaxContribution(getGrossSalary());
+  calculateTaxContribution(getGrossSalary());
 
 }
 
