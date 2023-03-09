@@ -2,18 +2,19 @@ import 'dart:io';
 
 import 'paigibigcontribution.dart';
 import 'philhealthcontribution.dart';
+import 'ssscontribution.dart';
 
 void main(List<String> args) {
 
   promptUserToInputSalary();
 
-  new pagibigcontribution(getGrossSalary());
+  // new pagibigcontribution(getGrossSalary());
   
-  new philhealthcontribution(getGrossSalary());
+  // new philhealthcontribution(getGrossSalary());
   
-  calculateSSSContribution(getGrossSalary());
+  new ssscontribution(getGrossSalary());
   
-  calculateTaxContribution(getGrossSalary());
+  // calculateTaxContribution(getGrossSalary());
 
 }
 
@@ -76,58 +77,6 @@ void setGrossSalary(double userGrossSalary){
 
 double getGrossSalary(){
   return grossSalary;
-}
-
-void calculateSSSContribution(double grossSalaryAmount){
-
-  /**
-   * SSS Contribution
-   */
-
-  double sssContribution = 0.00;
-
-  double minSalaryForDeduction = 4000.00;
-  double minMaxSalaryForDeduction = 4249.99;
-  double minSalaryForLastBracket = 29750.00;
-  double lowerBracket;
-  double upperBracket;
-  double minContribution = 180.00;
-  double incrementForMin = 0.01;
-  double incrementForMax = 499.99;
-  double incrementForContribution = 22.50;
-
-  if(grossSalaryAmount < minSalaryForDeduction){
-    
-    print("\nNo contribution for: SSS");
-
-  }else if (grossSalaryAmount >= minSalaryForLastBracket){
-  
-    sssContribution = 1350.00;
-
-    print("SSS Contribution: " + sssContribution.toStringAsFixed(2));
-
-  }else{
-
-    lowerBracket = minSalaryForDeduction;
-    upperBracket = minMaxSalaryForDeduction;
-
-    while(sssContribution == 0.00){
-
-      if(grossSalaryAmount >= lowerBracket && grossSalaryAmount <= upperBracket){
-
-        sssContribution = minContribution;
-        print("SSS Contribution: " + sssContribution.toStringAsFixed(2));
-
-      }else{
-
-        lowerBracket = upperBracket + incrementForMin;
-        upperBracket = lowerBracket + incrementForMax;
-        minContribution += incrementForContribution;
-
-      }
-
-    }
-  }
 }
 
 void calculateTaxContribution(double grossSalaryAmount){
